@@ -19,6 +19,7 @@ Class ContactType extends AbstractType{
                 ->add('mail',EmailType::class)
                 ->add('linkdin',EmailType::class);
     }
+    
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

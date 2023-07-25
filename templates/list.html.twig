@@ -1,7 +1,25 @@
 {% extends 'base.html.twig'%}
 {%block body%}
+<a href="{{path('app_new')}}">Ajouter</a>
 {% for user in users%}
+    {{user.Nom}}
+    {{user.Prenom}}
+    {{user.age}}
+    <h2>Adresse:</h2>
     {{user.Adresse.lot}}
+    {{user.Adresse.ville}}
+    <h2>Contact</h2>
+    {%for contact in user.Contact%}
+        {{contact.tel}}
+        {{contact.mail}}
+        {{contact.linkdin}}
+    {%endfor%}
+    <h2>Etudes</h2>
+    {%for Etudes in user.Etudes%}
+        {{Etudes.Diplomes}}
+        {{Etudes.Date|date('y-m-d')}}
+        {{Etudes.user.Nom}}
+    {%endfor%}
     <a href="{{path('app_edit',{'id':user.id})}}">Edit</a>
 {%endfor%}
 {%endblock%}

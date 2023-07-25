@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class UserType extends AbstractType{
+    
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -52,6 +53,7 @@ class UserType extends AbstractType{
         ]);
         
     }
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

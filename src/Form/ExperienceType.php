@@ -16,6 +16,7 @@ Class ExperienceType extends AbstractType{
         $builder
                 ->add('Titre');
     }
+    
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
