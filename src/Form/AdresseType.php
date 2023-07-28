@@ -13,8 +13,18 @@ Class AdresseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('Lot',TextType::class)
-                ->add('ville',TextType::class);
+                ->add('Lot',TextType::class,[
+                    'attr'=>[
+                        'class'=>'form-control',
+                        'placeholder'=>'Lot'
+                    ]
+                ])
+                ->add('ville',TextType::class,[
+                    'attr'=>[
+                        'class'=>'form-control',
+                        'placeholder'=>'Ville'
+                    ]
+                ]);
     }
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -23,6 +23,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userManager->save($user, true);
             
+            $this->addFlash('success',"Utilisateur enregistrer");
             return $this->redirectToRoute('app_list');
         }
 
@@ -49,10 +50,12 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userManager->save($user, true);
             
+            
+            $this->addFlash('success','Edit success');
             return $this->redirectToRoute('app_list');
         }
 
-        return $this->render('/new.html.twig', [
+        return $this->render('/edit.html.twig', [
             'form' => $form->createView()
         ]);
     }

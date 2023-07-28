@@ -15,9 +15,24 @@ Class ContactType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('Tel',TelType::class)
-                ->add('mail',EmailType::class)
-                ->add('linkdin',EmailType::class);
+                ->add('Tel',TelType::class,[
+                    'attr'=>[
+                        'class'=>'form-control',
+                        'placeholder'=>'Telephone'
+                    ]
+                ])
+                ->add('mail',EmailType::class,[
+                    'attr'=>[
+                        'class'=>'form-control',
+                        'placeholder'=>'Mail'
+                    ]
+                ])
+                ->add('linkdin',EmailType::class,[
+                    'attr'=>[
+                        'class'=>'form-control',
+                        'placeholder'=>'Linkdin'
+                    ]
+                ]);
     }
     
     public function configureOptions(OptionsResolver $resolver)

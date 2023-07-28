@@ -1,25 +1,51 @@
-{% extends 'base.html.twig'%}
-{%block body%}
-<a href="{{path('app_new')}}">Ajouter</a>
-{% for user in users%}
-    {{user.Nom}}
-    {{user.Prenom}}
-    {{user.age}}
-    <h2>Adresse:</h2>
-    {{user.Adresse.lot}}
-    {{user.Adresse.ville}}
-    <h2>Contact</h2>
-    {%for contact in user.Contact%}
-        {{contact.tel}}
-        {{contact.mail}}
-        {{contact.linkdin}}
-    {%endfor%}
-    <h2>Etudes</h2>
-    {%for Etudes in user.Etudes%}
-        {{Etudes.Diplomes}}
-        {{Etudes.Date|date('y-m-d')}}
-        {{Etudes.user.Nom}}
-    {%endfor%}
-    <a href="{{path('app_edit',{'id':user.id})}}">Edit</a>
-{%endfor%}
-{%endblock%}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div class="container mt-4">
+    <a href="{{ path('app_new') }}" class="btn btn-primary mb-3">Ajouter</a>
+    <div class="row">
+      {% for user in users %}
+        <div class="col-md-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">{{ user.Nom }} {{ user.Prenom }}</h3>
+              <p class="card-text">Age: {{ user.age }}</p>
+
+              <h2>Adresse:</h2>
+              <p>{{ user.Adresse.lot }}</p>
+              <p>{{ user.Adresse.ville }}</p>
+
+              <h2>Contact</h2>
+              <ul class="list-unstyled">
+                {% for contact in user.Contact %}
+                  <li>Tél: {{ contact.tel }}</li>
+                  <li>Email: {{ contact.mail }}</li>
+                  <li>LinkedIn: {{ contact.linkdin }}</li>
+                {% endfor %}
+              </ul>
+
+              <h2>Etudes</h2>
+              <ul class="list-unstyled">
+                {% for Etudes in user.Etudes %}
+                  <li>Diplômes: {{ Etudes.Diplomes }}</li>
+                  <li>Date: {{ Etudes.Date|date('Y-m-d') }}</li>
+                {% endfor %}
+              </ul>
+
+              <h2>Experience</h2>
+              <ul class="list-unstyled">
+                {% for Experience in user.Experience %}
+                  <li>Date debut: {{ Experience.DateDebut|date('Y-m-d') }}</li>
+                  <li>Date fin: {{ Experience.DateFin|date('Y-m-d') }}</li>
+                  <li>Titre: {{ Experience.Titre}}</li>
+                {% endfor %}
+              </ul>
+
+              <a href="{{ path('app_edit', {'id': user.id}) }}" class="btn btn-secondary">Edit</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

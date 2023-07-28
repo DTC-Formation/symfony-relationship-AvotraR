@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div class="container mt-4">
+    <h1>Édition de l'utilisateur</h1>
+      {{ form_start(form) }}
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          {{ form_row(form.Nom) }}
+        </div>
+        <div class="col-md-4 mb-3">
+          {{ form_row(form.Prenom) }}
+        </div>
+        <div class="col-md-4 mb-3">
+          {{ form_row(form.Age) }}
+        </div>
+      </div>
+
+      <h2>Adresse</h2>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          {{ form_row(form.Adresse.Lot) }}
+        </div>
+        <div class="col-md-6 mb-3">
+          {{ form_row(form.Adresse.ville) }}
+        </div>
+      </div>
+
+      <h2>Contact:</h2>
+      <div class="Contact" data-prototype="{{ form_widget(form.Contact.vars.prototype)|e('html_attr') }}">
+        {% for contactForm in form.Contact %}
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              {{ form_row(contactForm.Tel) }}
+            </div>
+            <div class="col-md-4 mb-3">
+              {{ form_row(contactForm.mail) }}
+            </div>
+            <div class="col-md-4 mb-3">
+              {{ form_row(contactForm.linkdin) }}
+            </div>
+            <button type="button" class="btn btn-danger btn-sm remove-item">Supprimer</button>
+          </div>
+        {% endfor %}
+      </div>
+      <button type="button" class="btn btn-primary mt-2 mb-3 add-item" data-collection-holder-class="Contact">Ajouter un contact</button>
+
+      <h2>Etudes:</h2>
+      <div class="Etudes" data-prototype="{{ form_widget(form.Etudes.vars.prototype)|e('html_attr') }}">
+        {% for etudeForm in form.Etudes %}
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              {{ form_row(etudeForm.Diplomes) }}
+            </div>
+            <div class="col-md-4 mb-3">
+              {{ form_row(etudeForm.Date) }}
+            </div>
+            <button type="button" class="btn btn-danger btn-sm remove-item">Supprimer</button>
+          </div>
+        {% endfor %}
+      </div>
+      <button type="button" class="btn btn-primary mt-2 mb-3 add-item" data-collection-holder-class="Etudes">Ajouter des études</button>
+
+      <h2>Experiences:</h2>
+      <div class="Experience" data-prototype="{{ form_widget(form.Experience.vars.prototype)|e('html_attr') }}">
+        {% for Experience in form.Experience %}
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              {{ form_row(Experience.DateDebut) }}
+            </div>
+            <div class="col-md-4 mb-3">
+              {{ form_row(Experience.DateFin) }}
+            </div>
+            
+            <div class="col-md-4 mb-3">
+              {{ form_row(Experience.Titre) }}
+            </div>
+            <button type="button" class="btn btn-danger btn-sm remove-item">Supprimer</button>
+          </div>
+        {% endfor %}
+      </div>
+      <button type="button" class="btn btn-primary mt-2 mb-3 add-item" data-collection-holder-class="Etudes">Ajouter des Experiences</button>
+
+      <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+      {{ form_end(form) }}
+  </div>
+
+{% endblock %}

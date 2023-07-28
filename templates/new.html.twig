@@ -1,34 +1,59 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
+    <div class="container mt-4">
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    {{ form_row(form.Nom) }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    {{ form_row(form.Prenom) }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    {{ form_row(form.Age) }}
+                </div>
+            </div>
 
-    {{ form_row(form.Nom) }}
-    {{ form_row(form.Prenom) }}
-    {{ form_row(form.Age) }}
+            <h2>Adresse</h2>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    {{ form_row(form.Adresse.Lot) }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    {{ form_row(form.Adresse.ville) }}
+                </div>
+            </div>
 
-    <h2>Adresse</h2>
-    {{ form_widget(form.Adresse) }}
+            <h2>Contact:</h2>
+            <div class="Contact" data-index="{{ form.Contact|length > 0 ? form.Contact|last.vars.name + 1 : 0 }}"
+                data-prototype="{{ form_widget(form.Contact.vars.prototype)|e('html_attr') }}">
+            </div>
+            <button type="button" class="btn btn-primary mt-2 mb-3 add_item_link" data-collection-holder-class="Contact">Ajouter un contact</button>
 
-    <h2>Contact:</h2>
-    <ul class="Contact" data-index="{{ form.Contact|length > 0 ? form.Contact|last.vars.name + 1 : 0 }}"
-        data-prototype="{{ form_widget(form.Contact.vars.prototype)|e('html_attr') }}">
-    </ul>
-    <button type="button" class="add_item_link" data-collection-holder-class="Contact">Ajouter un contact</button>
+            <h2>Etudes:</h2>
+            <div class="Etudes" data-index="{{ form.Etudes|length > 0 ? form.Etudes|last.vars.name + 1 : 0 }}"
+                data-prototype="{{ form_widget(form.Etudes.vars.prototype)|e('html_attr') }}">
+            </div>
+            <button type="button" class="btn btn-primary mt-2 mb-3 add_item_link" data-collection-holder-class="Etudes">Ajouter des études</button>
 
-    <h2>Etudes:</h2>
-    <ul class="Etudes" data-index="{{ form.Etudes|length > 0 ? form.Etudes|last.vars.name + 1 : 0 }}"
-        data-prototype="{{ form_widget(form.Etudes.vars.prototype)|e('html_attr') }}">
-    </ul>
-    <button type="button" class="add_item_link" data-collection-holder-class="Etudes">Ajouter des études</button>
+            <h2>Experience:</h2>
+            <div class="Experience" data-index="{{ form.Experience|length > 0 ? form.Experience|last.vars.name + 1 : 0 }}"
+                data-prototype="{{ form_widget(form.Experience.vars.prototype)|e('html_attr') }}">
+            </div>
+            <button type="button" class="btn btn-primary mt-2 mb-3 add_item_link" data-collection-holder-class="Experience">Ajouter des experiences</button>
 
-    <button type="submit">Envoyer</button>
-    {{ form_end(form) }}
+            <div class="form-row">
+                
+            <button type="submit" class="btn btn-success">Envoyer</button>
+            </div>
+            {{ form_end(form) }}
+    </div>
 
     <script>
         const addFormToCollection = (e) => {
             const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
-            const item = document.createElement('li');
+            const item = document.createElement('div');
             item.innerHTML = collectionHolder
                 .dataset
                 .prototype
@@ -44,16 +69,16 @@
         const addFormDeleteLink = (item) => {
             const removeFormButton = document.createElement('button');
             removeFormButton.innerText = 'Supprimer';
-            item.append(removeFormButton);
+            removeFormButton.className = 'btn btn-danger mt-2';
+            item.appendChild(removeFormButton);
 
             removeFormButton.addEventListener('click', (e) => {
                 e.preventDefault();
-                // remove the li for the tag form
                 item.remove();
             });
         };
 
-        document.querySelectorAll('ul.Contact li').forEach((contact) => {
+        document.querySelectorAll('div.Contact div').forEach((contact) => {
             addFormDeleteLink(contact);
         });
 

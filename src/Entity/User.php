@@ -40,10 +40,14 @@ class User
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Etudes::class, cascade: ['persist', 'remove'])]
     private Collection $Etudes;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Experiences::class, cascade: ['persist', 'remove'])]
+    private Collection $Experience;
+
     public function __construct()
     {
         $this->Contact = new ArrayCollection();
         $this->Etudes = new ArrayCollection();
+        $this->Experience = new ArrayCollection();
     }
 
 
@@ -154,6 +158,36 @@ class User
             // set the owning side to null (unless already changed)
             if ($etude->getUser() === $this) {
                 $etude->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Experiences>
+     */
+    public function getExperience(): Collection
+    {
+        return $this->Experience;
+    }
+
+    public function addExperience(Experiences $experience): static
+    {
+        if (!$this->Experience->contains($experience)) {
+            $this->Experience->add($experience);
+            $experience->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExperience(Experiences $experience): static
+    {
+        if ($this->Experience->removeElement($experience)) {
+            // set the owning side to null (unless already changed)
+            if ($experience->getUser() === $this) {
+                $experience->setUser(null);
             }
         }
 

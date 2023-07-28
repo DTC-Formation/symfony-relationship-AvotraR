@@ -4,6 +4,7 @@ namespace App\Form;
 use App\Entity\User;
 use App\Entity\Adresse;
 use App\Form\AdresseType;
+use App\Form\ExperiencesType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -20,19 +21,19 @@ class UserType extends AbstractType{
         $builder
         ->add('Nom',TextType::class,[
             'attr'=>[
-                "class"=>"nom-input",
+                "class"=>"form-control",
                 "placeholder" => "Nom"
             ]
         ])
         ->add('Prenom',TextType::class,[
             'attr'=>[
-                "class"=>"nom",
+                "class"=>"form-control",
                 "placeholder" => "Prenom"
             ]
         ])
         ->add('Age',NumberType::class,[
             'attr'=>[
-                "class"=>"age-input",
+                "class"=>"form-control",
                 "placeholder" => "Age"
             ]
             ])
@@ -46,6 +47,13 @@ class UserType extends AbstractType{
         ])
         ->add('Etudes',CollectionType::class,[
             'entry_type'=>EtudesType::class,
+            'allow_add' => true,
+            'allow_delete' => true,
+            'label'=>false,
+            'by_reference' => false,
+        ])
+        ->add('Experience',CollectionType::class,[
+            'entry_type'=>ExperiencesType::class,
             'allow_add' => true,
             'allow_delete' => true,
             'label'=>false,
