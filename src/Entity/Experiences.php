@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\ExperiencesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ExperiencesRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ExperiencesRepository::class)]
 class Experiences
@@ -12,6 +13,7 @@ class Experiences
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['listing'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -20,6 +22,7 @@ class Experiences
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $DateFin = null;
 
+    #[Groups(['listing'])]
     #[ORM\Column(length: 255)]
     private ?string $Titre = null;
 

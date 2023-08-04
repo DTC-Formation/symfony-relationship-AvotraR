@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\AdresseRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AdresseRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AdresseRepository::class)]
 class Adresse
@@ -11,11 +12,14 @@ class Adresse
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['listing'])]
     private ?int $id = null;
 
+    #[Groups(['listing'])]
     #[ORM\Column(length: 255)]
     private ?string $Lot = null;
 
+    #[Groups(['listing'])]
     #[ORM\Column(length: 255)]
     private ?string $Ville = null;
 

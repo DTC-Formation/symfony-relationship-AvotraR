@@ -23,4 +23,13 @@ class UserManager
             $this->em->flush();
         }
     }
+
+    public function remove(User $entity, bool $flush = false): void
+    {
+        $this->em->remove($entity);
+
+        if ($flush) {
+            $this->em->flush();
+        }
+    }
 }

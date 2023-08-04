@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ContactRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -11,14 +12,18 @@ class Contact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['listing'])]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['listing'])]
     private ?int $Tel = null;
 
+    #[Groups(['listing'])]
     #[ORM\Column(length: 255)]
     private ?string $mail;
 
+    #[Groups(['listing'])]
     #[ORM\Column(length: 255)]
     private ?string $linkdin;
 

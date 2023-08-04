@@ -26,7 +26,6 @@ class UserController extends AbstractController
             $this->addFlash('success',"Utilisateur enregistrer");
             return $this->redirectToRoute('app_list');
         }
-
         return $this->render('/new.html.twig', [
             'form' => $form->createView()
         ]);

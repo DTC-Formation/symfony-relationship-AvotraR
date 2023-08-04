@@ -10,6 +10,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
@@ -19,27 +20,35 @@ class User
     #[ORM\Column(type:"uuid", unique:true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class:'doctrine.uuid_generator')]
+    #[Groups(['listing'])]
     private ?Uuid $id;
 
+    #[Groups(['listing'])]
     #[ORM\Column(length: 255)]
     private ?string $Nom = null;
 
+    #[Groups(['listing'])]
     #[ORM\Column(length: 255)]
     private ?string $Prenom = null;
 
+    #[Groups(['listing'])]
     #[ORM\Column]
     private ?int $Age = null;
 
+    #[Groups(['listing'])]
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Adresse $Adresse = null;
 
+    #[Groups(['listing'])]
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Contact::class, cascade: ['persist', 'remove'])]
     private Collection $Contact;
 
+    #[Groups(['listing'])]
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Etudes::class, cascade: ['persist', 'remove'])]
     private Collection $Etudes;
 
+    #[Groups(['listing'])]
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Experiences::class, cascade: ['persist', 'remove'])]
     private Collection $Experience;
 
