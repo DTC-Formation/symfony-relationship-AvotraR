@@ -23,24 +23,24 @@ class User
     #[Groups(['listing'])]
     private ?Uuid $id;
 
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     #[ORM\Column(length: 255)]
     private ?string $Nom = null;
 
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     #[ORM\Column(length: 255)]
     private ?string $Prenom = null;
 
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     #[ORM\Column]
     private ?int $Age = null;
 
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Adresse $Adresse = null;
 
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Contact::class, cascade: ['persist', 'remove'])]
     private Collection $Contact;
 

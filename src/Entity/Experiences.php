@@ -16,13 +16,16 @@ class Experiences
     #[Groups(['listing'])]
     private ?int $id = null;
 
+    
+    #[Groups(['listing','creating'])]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $DateDebut = null;
 
+    #[Groups(['listing','creating'])]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $DateFin = null;
 
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     #[ORM\Column(length: 255)]
     private ?string $Titre = null;
 

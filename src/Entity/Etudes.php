@@ -16,17 +16,19 @@ class Etudes
     #[ORM\GeneratedValue]
     #[ORM\Column]
     #[Groups(['listing'])]
-    private ?int $id = null;
+    private ?int $id;
 
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     #[ORM\Column(length: 255)]
-    private ?string $Diplomes = null;
+    private ?string $Diplomes;
 
+    
+    #[Groups(['listing','creating'])]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $Date = null;
+    private ?\DateTimeInterface $Date;
 
     #[ORM\ManyToOne(inversedBy: 'Etudes', cascade: ['persist', 'remove'])]
-    private ?User $user = null;
+    private ?User $user;
 
 
     public function getId(): ?int

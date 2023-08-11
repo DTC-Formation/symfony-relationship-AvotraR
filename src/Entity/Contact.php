@@ -12,18 +12,18 @@ class Contact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     private ?int $Tel = null;
 
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     #[ORM\Column(length: 255)]
     private ?string $mail;
 
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     #[ORM\Column(length: 255)]
     private ?string $linkdin;
 

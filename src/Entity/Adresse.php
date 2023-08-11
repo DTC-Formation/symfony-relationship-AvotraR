@@ -13,15 +13,15 @@ class Adresse
     #[ORM\GeneratedValue]
     #[ORM\Column]
     #[Groups(['listing'])]
-    private ?int $id = null;
+    private ?int $id;
 
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     #[ORM\Column(length: 255)]
-    private ?string $Lot = null;
+    private ?string $Lot;
 
-    #[Groups(['listing'])]
+    #[Groups(['listing','creating'])]
     #[ORM\Column(length: 255)]
-    private ?string $Ville = null;
+    private ?string $Ville;
 
     #[ORM\OneToOne(mappedBy: 'Adresse', cascade: ['persist', 'remove'])]
     private ?User $user = null;
